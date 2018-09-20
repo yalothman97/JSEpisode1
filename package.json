@@ -1,5 +1,5 @@
 {
-  "name": "JSEpisode1",
+  "name": "JSEpisode1a",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -10,5 +10,8 @@
   },
   "scripts": {
     "test": "jest"
+  },
+  "dependencies": {
+    "babel-core": "^6.26.3"
   }
 }

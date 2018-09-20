@@ -6,9 +6,41 @@
  *
  ***************************/
 
-import pairs from "./pairs";
+import { greet, oddsSmallerThan } from "./functions";
 
-describe("pairs()", () => {
+xdescribe("greet(name)", () => {
+  test("logs 'Hello' if there is no name", () => {
+    const spy = jest.spyOn(console, "log");
+    greet();
+    expect(spy).toHaveBeenCalledWith("Hello");
+    spy.mockRestore();
+  });
+
+  test("logs 'Hello <name>' when there is a name", () => {
+    const spy = jest.spyOn(console, "log");
+    const names = ["Asis", "Lailz", "Mishmish"];
+
+    names.forEach(name => {
+      greet(name);
+      expect(spy).toHaveBeenCalledWith(`Hello ${name}`);
+    });
+
+    spy.mockRestore();
+  });
+});
+
+xdescribe("oddsSmallerThan(n)", () => {
+  test("returns the correct number of odds", () => {
+    const numbers = [0, 1, 9, 10, 345, 448758328540529];
+    const results = [0, 0, 4, 5, 172, 224379164270264];
+    numbers.forEach((n, i) => {
+      console.log(n, i);
+      expect(oddsSmallerThan(n)).toEqual(results[i]);
+    });
+  });
+});
+
+xdescribe("pairs()", () => {
   test("returns an empty array when passed nothing", () => {
     const result = pairs();
     expect(result).toEqual([]);
