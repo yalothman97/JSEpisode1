@@ -85,7 +85,7 @@ describe("ageFromCivilID(civilID)", () => {
   });
 
   test("rounds down to the nearest year", () => {
-    let currentMonth = new Date().getMonth() + 1;
+    let currentMonth = new Date().getMonth() + 2;
     currentMonth = currentMonth < 10 ? `0${currentMonth}` : currentMonth;
     const civilIDs = [
       `287${currentMonth}0512345`,
@@ -100,7 +100,7 @@ describe("ageFromCivilID(civilID)", () => {
     const results = dates.map(date => {
       const today = new Date();
       const dob = new Date(date);
-      return today.getFullYear() - dob.getFullYear();
+      return today.getFullYear() - dob.getFullYear() - 1;
     });
 
     civilIDs.forEach((civilID, i) =>
