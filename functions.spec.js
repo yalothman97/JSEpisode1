@@ -72,7 +72,7 @@ describe("squareOrDouble(n)", () => {
 
 describe("ageFromCivilID(civilID)", () => {
   test("returns the correct age", () => {
-    const civilIDs = [287060512345, 285082712345, 298060512345];
+    const civilIDs = ["287060512345", "285082712345", "298060512345"];
     const dates = ["06/05/1987", "08/27/1985", "06/05/1998"];
     const results = dates.map(date => {
       const today = new Date();

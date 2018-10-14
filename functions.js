@@ -48,7 +48,7 @@ function squareOrDouble(n) {
 
 /**
  * ageFromCivilID(civilID):
- * - receives a civilID of the form <CYYMMDDXXXXX>
+ * - receives a civilID as a STRING of the form <CYYMMDDXXXXX>
  *   where:
  *     - C is the century (1 = 18xx, 2 = 19xx, 3 = 20xx)
  *     - YY is the year (00 - 99)
@@ -57,9 +57,11 @@ function squareOrDouble(n) {
  * - calculates and returns the age of the civilID holder (rounded down to the nearest year)
  * - assume all civilIDs will be valid
  *
- * e.g. (assuming the date today is September 23 2018):
- * ageFromCivilID(287050612345) -> 31
- * ageFromCivilID(297111012345) -> 20
+ * Hint: you can use JavaScript's Date() class to make things easier
+ *
+ * e.g. (if we assume that the date today is September 23 2018):
+ *    ageFromCivilID(287050612345) -> 31
+ *    ageFromCivilID(297111012345) -> 20
  */
 function ageFromCivilID(civilID) {
   // Your code here
@@ -67,7 +69,7 @@ function ageFromCivilID(civilID) {
 
 /**
  * canVoteInKuwait(civilID, isKuwaiti, isRoyal):
- * - receives a civilID
+ * - receives a civilID as a STRING
  * - receives a boolean isKuwaiti
  * - receives a boolean isRoyal
  * - returns true if the person can vote, false otherwise:
