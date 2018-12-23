@@ -109,7 +109,12 @@ describe("ageFromCivilID(civilID)", () => {
   });
 
   test("takes into account the century", () => {
-    const civilIDs = [300060512345, 318082712345, 199082712345, 245060512345];
+    const civilIDs = [
+      "300060512345",
+      "318082712345",
+      "199082712345",
+      "245060512345"
+    ];
     const dates = ["06/05/2000", "08/27/2018", "08/27/1899", "06/05/1945"];
     const results = dates.map(date => {
       const today = new Date();
