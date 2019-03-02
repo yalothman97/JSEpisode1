@@ -11,8 +11,7 @@ import {
   isOdd,
   oddsSmallerThan,
   squareOrDouble,
-  ageFromCivilID,
-  canVoteInKuwait
+  ageFromBirthDate
 } from "./functions";
 
 describe("greet(name)", () => {
@@ -70,32 +69,39 @@ describe("squareOrDouble(n)", () => {
   });
 });
 
-describe("ageFromCivilID(civilID)", () => {
+fdescribe("ageFromBirthDate(birthDate)", () => {
   test("returns the correct age", () => {
-    const civilIDs = ["287060512345", "285082712345", "298060512345"];
-    const dates = ["06/05/1987", "08/27/1985", "06/05/1998"];
+    const today = new Date();
+    let month = new Date().getMonth() - 2;
+    month = month < 1 ? 12 : month;
+    const birthDates = [`1987${month}05`, `1985${month}27`, `1998${month}05`];
+    const dates = [`06/${month}/1987`, `08/${month}/1985`, `06/${month}/1998`];
     const results = dates.map(date => {
-      const today = new Date();
       const dob = new Date(date);
       return today.getFullYear() - dob.getFullYear();
     });
-    civilIDs.forEach((civilID, i) =>
-      expect(ageFromCivilID(civilID)).toBe(results[i])
+    birthDates.forEach((birthDate, i) =>
+      expect(ageFromBirthDate(birthDate)).toBe(results[i])
     );
   });
 
   test("rounds down to the nearest year", () => {
     let currentMonth = new Date().getMonth() + 2;
+    let yearOffset = 0;
     currentMonth = currentMonth < 10 ? `0${currentMonth}` : currentMonth;
-    const civilIDs = [
-      `287${currentMonth}0512345`,
-      `285${currentMonth}0512345`,
-      `298${currentMonth}0512345`
+    if (currentMonth > 12) {
+      currentMonth = 1;
+      yearOffset = 1;
+    }
+    const birthDates = [
+      `${1987 + yearOffset}${currentMonth}05`,
+      `${1985 + yearOffset}${currentMonth}05`,
+      `${1998 + yearOffset}${currentMonth}05`
     ];
     const dates = [
-      `${currentMonth}/05/1987`,
-      `${currentMonth}/05/1985`,
-      `${currentMonth}/05/1998`
+      `${currentMonth}/05/${1987 + yearOffset}`,
+      `${currentMonth}/05/${1985 + yearOffset}`,
+      `${currentMonth}/05/${1998 + yearOffset}`
     ];
     const results = dates.map(date => {
       const today = new Date();
@@ -103,52 +109,8 @@ describe("ageFromCivilID(civilID)", () => {
       return today.getFullYear() - dob.getFullYear() - 1;
     });
 
-    civilIDs.forEach((civilID, i) =>
-      expect(ageFromCivilID(civilID)).toBe(results[i])
+    birthDates.forEach((birthDate, i) =>
+      expect(ageFromBirthDate(birthDate)).toBe(results[i])
     );
-  });
-
-  test("takes into account the century", () => {
-    const civilIDs = [
-      "300060512345",
-      "318082712345",
-      "199082712345",
-      "245060512345"
-    ];
-    const dates = ["06/05/2000", "08/27/2018", "08/27/1899", "06/05/1945"];
-    const results = dates.map(date => {
-      const today = new Date();
-      const dob = new Date(date);
-      return today.getFullYear() - dob.getFullYear();
-    });
-    civilIDs.forEach((civilID, i) =>
-      expect(ageFromCivilID(civilID)).toBe(results[i])
-    );
-  });
-});
-
-describe("canVoteInKuwait(civilID, isKuwaiti, isRoyal)", () => {
-  test("returns false if the age is under 21", () => {
-    let year = (new Date().getFullYear() - 18) % 100;
-    const civilID = `3${year < 10 ? `0${year}` : year}010512345`;
-    expect(canVoteInKuwait(civilID, true, false)).toBe(false);
-  });
-
-  test("returns false if the person is not Kuwaiti", () => {
-    let year = (new Date().getFullYear() - 50) % 100;
-    const civilID = `2${year < 10 ? `0${year}` : year}010512345`;
-    expect(canVoteInKuwait(civilID, false, false)).toBe(false);
-  });
-
-  test("returns false if the person is from the royal family", () => {
-    let year = (new Date().getFullYear() - 50) % 100;
-    const civilID = `2${year < 10 ? `0${year}` : year}010512345`;
-    expect(canVoteInKuwait(civilID, true, true)).toBe(false);
-  });
-
-  test("returns true if the person meets all criteria", () => {
-    let year = (new Date().getFullYear() - 50) % 100;
-    const civilID = `2${year < 10 ? `0${year}` : year}010512345`;
-    expect(canVoteInKuwait(civilID, true, false)).toBe(true);
   });
 });
