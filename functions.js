@@ -85,16 +85,7 @@ function ageFromBirthDate(birthDate) {
   const today = new Date();
   const dob = new Date(`${month}/${day}/${year}`);
 
-  let age = today.getFullYear() - dob.getFullYear();
-
-  if (
-    dob.getMonth() > today.getMonth() ||
-    (dob.getMonth() === today.getMonth() && dob.getDate() > today.getDate())
-  ) {
-    age--;
-  }
-
-  return age;
+  return Math.floor((today - dob) / _MS_PER_YEAR);
 }
 
 module.exports = {
