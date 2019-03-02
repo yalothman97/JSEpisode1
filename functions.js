@@ -47,46 +47,30 @@ function squareOrDouble(n) {
 }
 
 /**
- * ageFromCivilID(civilID):
- * - receives a civilID as a STRING of the form <CYYMMDDXXXXX>
+ * ageFromBirthDate(birthDate):
+ * - receives a birthDate as a STRING of the form <YYYYMMDD>
  *   where:
- *     - C is the century (1 = 18xx, 2 = 19xx, 3 = 20xx)
- *     - YY is the year (00 - 99)
+ *     - YYYY is the year 
  *     - MM is the month (01 - 12)
  *     - DD is the date
- * - calculates and returns the age of the civilID holder (rounded down to the nearest year)
- * - assume all civilIDs will be valid
+ * - calculates and returns the age in years (rounded down to the nearest year)
+ * - assume all birthDates will be valid
  *
  * Hint: you can use JavaScript's Date() class to make things easier
  *
  * e.g. (if we assume that the date today is September 23 2018):
- *    ageFromCivilID(287050612345) -> 31
- *    ageFromCivilID(297111012345) -> 20
+ *    ageFromBirthDate(19870506) -> 31 (because the birthday already passed)
+ *    ageFromBirthDate(19971110) -> 20 (because the birthday hasn't passed yet)
  */
-function ageFromCivilID(civilID) {
+function ageFromBirthDate(birthDate) {
   // Your code here
 }
 
-/**
- * canVoteInKuwait(civilID, isKuwaiti, isRoyal):
- * - receives a civilID as a STRING
- * - receives a boolean isKuwaiti
- * - receives a boolean isRoyal
- * - returns true if the person can vote, false otherwise:
- *   In Kuwait the conditions for voting are as follows:
- *    - Over 21
- *    - Is a Kuwaiti citizen
- *    - Is NOT a member of the royal family
- */
-function canVoteInKuwait(civilID, isKuwaiti, isRoyal) {
-  // Your code here
-}
 
 module.exports = {
   greet,
   isOdd,
   oddsSmallerThan,
   squareOrDouble,
-  ageFromCivilID,
-  canVoteInKuwait
+  ageFromBirthDate,
 };
