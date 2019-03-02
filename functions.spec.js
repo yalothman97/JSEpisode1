@@ -69,16 +69,18 @@ describe("squareOrDouble(n)", () => {
   });
 });
 
-fdescribe("ageFromBirthDate(birthDate)", () => {
+describe("ageFromBirthDate(birthDate)", () => {
+  const _MS_PER_YEAR = 1000 * 60 * 60 * 24 * 365;
+
   test("returns the correct age", () => {
     const today = new Date();
-    let month = new Date().getMonth() - 2;
+    let month = today.getMonth() - 2;
     month = month < 1 ? 12 : month;
     const birthDates = [`1987${month}05`, `1985${month}27`, `1998${month}05`];
     const dates = [`06/${month}/1987`, `08/${month}/1985`, `06/${month}/1998`];
     const results = dates.map(date => {
       const dob = new Date(date);
-      return today.getFullYear() - dob.getFullYear();
+      return Math.floor((today - dob) / _MS_PER_YEAR);
     });
     birthDates.forEach((birthDate, i) =>
       expect(ageFromBirthDate(birthDate)).toBe(results[i])
@@ -86,7 +88,8 @@ fdescribe("ageFromBirthDate(birthDate)", () => {
   });
 
   test("rounds down to the nearest year", () => {
-    let currentMonth = new Date().getMonth() + 2;
+    const today = new Date();
+    let currentMonth = today.getMonth() + 2;
     let yearOffset = 0;
     currentMonth = currentMonth < 10 ? `0${currentMonth}` : currentMonth;
     if (currentMonth > 12) {
@@ -104,9 +107,8 @@ fdescribe("ageFromBirthDate(birthDate)", () => {
       `${currentMonth}/05/${1998 + yearOffset}`
     ];
     const results = dates.map(date => {
-      const today = new Date();
       const dob = new Date(date);
-      return today.getFullYear() - dob.getFullYear() - 1;
+      return Math.floor((today - dob) / _MS_PER_YEAR);
     });
 
     birthDates.forEach((birthDate, i) =>
