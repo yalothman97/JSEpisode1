@@ -50,7 +50,7 @@ function squareOrDouble(n) {
  * ageFromBirthDate(birthDate):
  * - receives a birthDate as a STRING of the form <YYYYMMDD>
  *   where:
- *     - YYYY is the year 
+ *     - YYYY is the year
  *     - MM is the month (01 - 12)
  *     - DD is the date
  * - calculates and returns the age in years (rounded down to the nearest year)
@@ -63,14 +63,15 @@ function squareOrDouble(n) {
  *    ageFromBirthDate(19971110) -> 20 (because the birthday hasn't passed yet)
  */
 function ageFromBirthDate(birthDate) {
+  const _MS_PER_YEAR = 1000 * 60 * 60 * 24 * 365;
+
   // Your code here
 }
-
 
 module.exports = {
   greet,
   isOdd,
   oddsSmallerThan,
   squareOrDouble,
-  ageFromBirthDate,
+  ageFromBirthDate
 };
