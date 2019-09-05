@@ -76,6 +76,7 @@ describe("ageFromBirthDate(birthDate)", () => {
     const today = new Date();
     let month = today.getMonth() - 2;
     month = month < 1 ? 12 : month;
+    month = month < 10 ? `0${month}` : month;
     const birthDates = [`1987${month}05`, `1985${month}27`, `1998${month}05`];
     const dates = [`06/${month}/1987`, `08/${month}/1985`, `06/${month}/1998`];
     const results = dates.map(date => {
