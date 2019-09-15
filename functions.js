@@ -5,7 +5,11 @@
  * - logs "Hello <name>" if there is a name
  */
 function greet(name) {
-  // Your code here
+  if (name){
+    console.log("Hello " + name)
+  }
+  else{
+  console.log("Hello")}
 }
 
 /**
@@ -14,7 +18,10 @@ function greet(name) {
  * - returns true if it's odd, false otherwise
  */
 function isOdd(n) {
-  // Your code here
+  if (n % 2 === 1){
+  return true
+}
+ return false
 }
 
 /**
@@ -29,7 +36,11 @@ function isOdd(n) {
  * Hint: you can solve this without writing any loops!
  */
 function oddsSmallerThan(n) {
-  // Your code here
+  if(isOdd(n)){
+    return Math.floor(n/2)
+  }else{
+    return n/2
+  }
 }
 
 /**
@@ -43,7 +54,10 @@ function oddsSmallerThan(n) {
  * squareOrDouble(9) -> 81
  */
 function squareOrDouble(n) {
-  // Your code here
+  if (isOdd(n))
+  return (n **2)
+  else
+  return(n*2)
 }
 
 /**
